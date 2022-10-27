@@ -1,21 +1,21 @@
 class Solution {
     public int majorityElement(int[] arr) {
         int n = arr.length;
-        int count = 1;
-        int max = arr[0];
-        for(int i = 0; i < n; i++){
-            if(arr[i] == max){
-                count ++;
-            }
-            else{
-                count --;
-            }
-            if(count ==0){
-                
-            max = arr[i];
-                count = 1;
-            }
+        HashMap<Integer, Integer> hm = new HashMap<>();
+         for(int e : arr){
+             if(hm.containsKey(e)){
+                 hm.put(e,hm.get(e) + 1);
+                 
+             }
+             else{
+                 hm.put(e , 1);
+             }
+         }
+        int count = 0;
+        for(int j : hm.keySet()){
+            if(hm.get(j) > n / 2)
+            return j;
         }
-        return max;
+        return -1;
     }
 }
